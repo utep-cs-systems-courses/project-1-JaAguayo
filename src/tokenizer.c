@@ -4,7 +4,7 @@
 
 int main(){
   char name[20];
-  fgets(name,10,stdin);
+  fgets(name,20,stdin);
 
   printf("space char");
   int space_check = space_char(name[0]);
@@ -19,18 +19,23 @@ int main(){
   printf("word start");
   char *str = name;
   char *start = word_start(str);
-  printf("%c\n",*start);
+  printf("%d\n",*start);
   printf("\n");
 
   printf("word end");
   char *end = word_terminator(str);
   printf("%c\n",*end);
   printf("\n");
+
+  printf("count words");
+  int a = count_words(str);
+  printf("%d\n",a);
+  printf("\n");
 }
 
 int space_char(char c){
   if (c == '\n')
-    return 0;
+    return 1;
   
   else if ( c == ' '|| c == '\t')
     return 1;
@@ -56,7 +61,12 @@ char *word_start(char *str){
 
   for (i = 0; space_char(temp[i]);i++)
     ;
-
+  
+  if ((temp+i) == "\0"){
+    temp = NULL;
+    return temp;
+  }
+  
   return temp + i;
 }
 
@@ -73,5 +83,17 @@ char *word_terminator(char *word){
 }
 
 int count_words(char *str){
-  
-}
+  int count = 0;
+  int state = 0;
+
+  while (*str){
+    if (state == 0 && non_space_char(*str)){
+      state = 1;
+      ++count;
+    }
+    else if (state == 1 && space_char(*str))
+      state = 0;
+    *str++;
+  }
+  return count;}
+
