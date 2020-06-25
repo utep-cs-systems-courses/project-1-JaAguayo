@@ -3,8 +3,8 @@
 #include "tokenizer.h"
 
 int main(){
-  char name[20];
-  fgets(name,20,stdin);
+  char name[100];
+  fgets(name,100,stdin);
 
   printf("space char");
   int space_check = space_char(name[0]);
@@ -126,7 +126,7 @@ int len_word(char *str){
 }
 
 char *copy_str(char *inStr, short len){
-  char *copy = (char*) malloc(len+1);
+  char *copy = (char*) malloc((sizeof(char*))*(len+1));
   int i;
 
   for (i = 0; i < len; i++)
@@ -142,7 +142,7 @@ char **tokenize(char *str){
   int i,len;
   char *temp = str;
 
-  char **token = (char**) malloc(num_words+1);
+  char **token = (char**) malloc((sizeof(char*))*(num_words+1));
 
   for (i = 0; i < num_words; i++){
     len = len_word(temp);
