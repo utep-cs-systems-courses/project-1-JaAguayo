@@ -42,6 +42,9 @@ int main(){
   while (*copy != '\0')
     printf("%c",*copy++);
   printf("\n");
+
+  char **token = tokenize(str);
+  print_tokens(token);
 }
 
 int space_char(char c){
@@ -134,5 +137,34 @@ char *copy_str(char *inStr, short len){
 }
 
 char **tokenize(char *str){
+  int num_words = count_words(str);
+  int i,len;
+  char *temp = str;
+
+  char **token = (char*) malloc(num_words+1);
+
+  for (i = 0; i < num_words; i++){
+    len = len_word(temp);
+    token[i] = copy_str(temp,len);
+    temp = word_terminator(temp);
+    temp = word_start(temp);
+  }
+  token[i] = 0;
+
+  return token;
+}
+
+void print_tokens(char **tokens){
+  for (int i = 0; tokens[i] != 0;i++){
+    printf("token%d",i);
+    printf("\t");
+    for (int j = 0; tokens[i][j] != '\0';j++){
+      printf("%c",tokens[i][j]);
+    }
+    printf("\n");
+  }
+}
+
+void free_tokens(char **tokens){
   
 }
