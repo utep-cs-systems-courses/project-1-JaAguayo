@@ -45,6 +45,7 @@ int main(){
 
   char **token = tokenize(str);
   print_tokens(token);
+  free_tokens(token);
 }
 
 int space_char(char c){
@@ -141,7 +142,7 @@ char **tokenize(char *str){
   int i,len;
   char *temp = str;
 
-  char **token = (char*) malloc(num_words+1);
+  char **token = (char**) malloc(num_words+1);
 
   for (i = 0; i < num_words; i++){
     len = len_word(temp);
@@ -166,5 +167,7 @@ void print_tokens(char **tokens){
 }
 
 void free_tokens(char **tokens){
-  
+  for (int i = 0; tokens[i] != 0;i++)
+    free(tokens[i]);
+  free(tokens);
 }
