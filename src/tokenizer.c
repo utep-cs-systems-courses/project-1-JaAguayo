@@ -31,6 +31,17 @@ int main(){
   int a = count_words(str);
   printf("%d\n",a);
   printf("\n");
+
+  printf("len");
+  int b = len_word(str);
+  printf("%d\n",b);
+  printf("\n");
+
+  printf("copy");
+  char *copy = copy_str(str,b);
+  while (*copy != '\0')
+    printf("%c",*copy++);
+  printf("\n");
 }
 
 int space_char(char c){
@@ -95,5 +106,33 @@ int count_words(char *str){
       state = 0;
     *str++;
   }
-  return count;}
+  return count;
+}
 
+int len_word(char *str){
+  char *start,*end;
+  int len;
+
+  start = word_start(str);
+  end = word_terminator(str);
+
+  len = end - start;
+
+  return len;
+}
+
+char *copy_str(char *inStr, short len){
+  char *copy = (char*) malloc(len+1);
+  int i;
+
+  for (i = 0; i < len; i++)
+    copy[i] = inStr[i];
+
+  copy[i] = '\0';
+
+  return copy;
+}
+
+char **tokenize(char *str){
+  
+}
