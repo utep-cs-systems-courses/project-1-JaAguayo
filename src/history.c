@@ -5,7 +5,8 @@
 
 List* init_history(){
   List *newList;
-  newList-> root = malloc (sizeof(Item));
+  newList = (List*) malloc (sizeof(List));
+  newList->root = NULL;
   return newList;
 }
 
@@ -15,21 +16,21 @@ void add_history(List *list, char *str){
   
   if (list->root == NULL){
     char *string_copy = copy_str(str,len);
-    Item newNode = (Item) malloc (sizeof(Item));
+    Item *newNode = (Item*) malloc (sizeof(Item));
     newNode->str = string_copy;
     newNode->id = 1;
     newNode->next = NULL;
-    list->root = &newNode;
+    list->root = newNode;
   }
   else{
-    Item current;
-    current = (list->*root);
+    Item *current;
+    current = (list->root);
     while (current->next != NULL){
       current = current->next;
       ++count;
     }
     char *string_copy = copy_str(str,len);
-    current->next =  malloc (sizeof(Item));
+    current->next = (Item*) malloc (sizeof(Item));
     current->next->id = (count+1);
     current->next->str = string_copy;
     current->next->next = NULL;
@@ -45,10 +46,10 @@ void print_history(List *list){
   if (list->root == NULL)
     printf("No history");
   else{
-    Item current;
+    Item *current;
     current = (list->root);
     while (current != NULL){
-      printf("History: ", current->str);
+      printf("History :\n ", current->str);
       current = current->next;
     }
   }
