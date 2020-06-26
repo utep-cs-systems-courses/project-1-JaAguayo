@@ -27,19 +27,18 @@ void add_history(List *list, char *str){
     current = (list->root);
     while (current->next != NULL){
       current = current->next;
-      ++count;
+      count++;
     }
     char *string_copy = copy_str(str,len);
     current->next = (Item*) malloc (sizeof(Item));
-    current->next->id = (count+1);
+    current->next->id = count;
     current->next->str = string_copy;
     current->next->next = NULL;
-    
   }
 }
 
 char *get_history(List *list,int id){
-  ;
+  return 0;
 }
 
 void print_history(List *list){
@@ -49,7 +48,8 @@ void print_history(List *list){
     Item *current;
     current = (list->root);
     while (current != NULL){
-      printf("History :\n ", current->str);
+      printf("History %d: ", current->id);
+      printf("%s\n ", current->str);
       current = current->next;
     }
   }
