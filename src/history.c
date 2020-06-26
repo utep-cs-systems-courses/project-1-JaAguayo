@@ -4,29 +4,32 @@
 #include "history.h"
 
 List* init_history(){
-  List newList-> root = (Item) malloc (sizeof(Item));
+  List *newList;
+  newList-> root = malloc (sizeof(Item));
   return newList;
 }
-//after calling this once do a temp in main with and do word term and send it a new pointer
+
 void add_history(List *list, char *str){
   int len = len_word(str);
   int i,count;
   
-  if (*root == 0){
+  if (list->root == NULL){
     char *string_copy = copy_str(str,len);
-    Item newNode->str = string_copy;
+    Item newNode = (Item) malloc (sizeof(Item));
+    newNode->str = string_copy;
     newNode->id = 1;
-    list->root = newNode;
-    list->root->newNode->next = NULL;
+    newNode->next = NULL;
+    list->root = &newNode;
   }
   else{
-    Item current = (list->root);
+    Item current;
+    current = (list->*root);
     while (current->next != NULL){
-      currnt = current->next;
+      current = current->next;
       ++count;
     }
     char *string_copy = copy_str(str,len);
-    current->next = (Item) malloc (sizeof(Item));
+    current->next =  malloc (sizeof(Item));
     current->next->id = (count+1);
     current->next->str = string_copy;
     current->next->next = NULL;
@@ -34,12 +37,21 @@ void add_history(List *list, char *str){
   }
 }
 
-char *get_history(List *list){
+char *get_history(List *list,int id){
   ;
 }
 
 void print_history(List *list){
-  ;
+  if (list->root == NULL)
+    printf("No history");
+  else{
+    Item current;
+    current = (list->root);
+    while (current != NULL){
+      printf("History: ", current->str);
+      current = current->next;
+    }
+  }
 }
 
 void free_history(List *list){
