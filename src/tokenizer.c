@@ -2,52 +2,6 @@
 #include <stdlib.h>
 #include "tokenizer.h"
 
-int main(){
-  char name[100];
-  fgets(name,100,stdin);
-
-  printf("space char");
-  int space_check = space_char(name[0]);
-  printf("%d\n",space_check);
-  printf("\n");
-
-  printf("non space char");
-  int non_check = non_space_char(name[0]);
-  printf("%d\n",non_check);
-  printf("\n");
-
-  printf("word start");
-  char *str = name;
-  char *start = word_start(str);
-  printf("%d\n",*start);
-  printf("\n");
-
-  printf("word end");
-  char *end = word_terminator(str);
-  printf("%c\n",*end);
-  printf("\n");
-
-  printf("count words");
-  int a = count_words(str);
-  printf("%d\n",a);
-  printf("\n");
-
-  printf("len");
-  int b = len_word(str);
-  printf("%d\n",b);
-  printf("\n");
-
-  printf("copy");
-  char *copy = copy_str(str,b);
-  while (*copy != '\0')
-    printf("%c",*copy++);
-  printf("\n");
-
-  char **token = tokenize(str);
-  print_tokens(token);
-  free_tokens(token);
-}
-
 int space_char(char c){
   if (c == '\n')
     return 1;
@@ -157,11 +111,8 @@ char **tokenize(char *str){
 
 void print_tokens(char **tokens){
   for (int i = 0; tokens[i] != 0;i++){
-    printf("token%d",i);
-    printf("\t");
-    for (int j = 0; tokens[i][j] != '\0';j++){
-      printf("%c",tokens[i][j]);
-    }
+    printf("token %d: ",i);
+    printf("%s",tokens[i]);
     printf("\n");
   }
 }
