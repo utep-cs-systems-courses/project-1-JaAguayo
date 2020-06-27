@@ -28,25 +28,7 @@ int main(){
     temp = word_start(temp);
   }
   //make into a function
-  char *search_node;
-  int num_node = 0;
-  int search = 0;
   print_history(strings);
-  printf("Do you want to search for a string? enter\n");
-  printf("yes = 1\n");
-  printf("no = 0\n");
-  scanf("%d",&search);
-  if (search == 1){
-    printf("Enter the number of the string you want to find\n");
-    printf("!");
-    scanf("%d",&num_node);
-    if (num_node > 1 && num_node < num_words){
-       search_node = get_history(strings,num_node);
-       printf("%s\n",search_node);
-    }
-    else
-      printf("That string does not exist\n");
-  }
-
+  search_history_UI(strings,str);
   free_history(strings);
 }

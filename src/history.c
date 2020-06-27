@@ -81,3 +81,29 @@ void free_history(List *list){
   }
   free(list);
 }
+
+int search_history_UI(List *list, char *str){
+  char *search_node;
+  int num_node = 0;
+  int search = 0;
+
+  int num_words = count_words(str);
+
+  printf("Do you want to search for a string? enter\n");
+  printf("yes = 1\n");
+  printf("no = 0\n");
+
+  scanf("%d",&search);
+  if (search == 1){
+    printf("Enter the number of the string you want to find\n");
+    printf("!");
+    scanf("%d",&num_node);
+    if (num_node > 0 && num_node <= num_node){
+      search_node = get_history(list,num_node);
+      printf("%s\n",search_node);
+    }
+    else
+      printf("That string does not exist\n");
+  }
+  
+}
