@@ -12,7 +12,7 @@ List* init_history(){
 
 void add_history(List *list, char *str){
   int len = len_word(str);
-  int i,count;
+  int count;
   
   if (list->root == NULL){
     char *string_copy = copy_str(str,len);
@@ -27,7 +27,7 @@ void add_history(List *list, char *str){
     current = (list->root);
     while (current->next != NULL){
       current = current->next;
-      count++;
+      ++count;
     }
     char *string_copy = copy_str(str,len);
     current->next = (Item*) malloc (sizeof(Item));
@@ -43,7 +43,7 @@ char *get_history(List *list,int id){
 
 void print_history(List *list){
   if (list->root == NULL)
-    printf("No history");
+    printf("No history\n");
   else{
     Item *current;
     current = (list->root);
