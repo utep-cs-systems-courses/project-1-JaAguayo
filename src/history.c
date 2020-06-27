@@ -38,7 +38,21 @@ void add_history(List *list, char *str){
 }
 
 char *get_history(List *list,int id){
-  return 0;
+  char *node;
+  if (list->root == NULL)
+    printf("List is empty there are no strings");
+  else{
+    Item *current;
+    current = (list->root);
+    while (current != NULL){
+      if (current->id == id){
+	node = current->str;
+	return node;
+      }
+      current = current->next;
+    }
+  }
+  return node;
 }
 
 void print_history(List *list){
@@ -56,5 +70,14 @@ void print_history(List *list){
 }
 
 void free_history(List *list){
-  ;
+  Item *current;
+  Item *next;
+  current = (list->root);
+
+  while (current != NULL){
+    next = current->next;
+    free(current);
+    current = next;
+  }
+  free(list);
 }
