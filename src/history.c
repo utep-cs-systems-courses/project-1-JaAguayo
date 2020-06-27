@@ -12,7 +12,7 @@ List* init_history(){
 
 void add_history(List *list, char *str){
   int len = len_word(str);
-  int count;
+  int count = 2;
   
   if (list->root == NULL){
     char *string_copy = copy_str(str,len);
