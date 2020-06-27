@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include "tokenizer.h"
 
+#define INPUT_LIM 100
+
 int space_char(char c){
   if (c == '\n')
     return 1;
@@ -122,3 +124,4 @@ void free_tokens(char **tokens){
     free(tokens[i]);
   free(tokens);
 }
+

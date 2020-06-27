@@ -96,16 +96,16 @@ void search_history_UI(List *list, char *str){
     printf("\n");
     printf("yes = 1\n");
     printf("no = 0\n");
-
+    
+    printf("$");
     scanf("%d",&search);
     printf("\n");
 
-    while((search != 0) || (search != 1)){
+    while (search != 1 && search != 0){
       printf("Please enter either 1 for yes or 0 for no\n");
+      printf("$");
       scanf("%d",&search);
       printf("\n");
-      if (search == 1 || search == 0)
-	break;
     }
     
     if (search == 1){
@@ -123,8 +123,10 @@ void search_history_UI(List *list, char *str){
   }
   printf("Would you like to print the history?\n");
   printf("1 for yes, 0 for no\n");
+  printf("$");
   scanf("%d",&print);
-  if (print == 1)
+  if (print == 1){
     printf("\n");
     print_history(list);
+  }
 }
