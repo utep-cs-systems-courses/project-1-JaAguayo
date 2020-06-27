@@ -27,8 +27,7 @@ int main(){
     temp = word_terminator(temp);
     temp = word_start(temp);
   }
-  //make into a function
-  print_history(strings);
+  
   search_history_UI(strings,str);
   free_history(strings);
 }

@@ -31,6 +31,6 @@ void print_history(List *list);
 /*Free the history list and the strings it references. */
 void free_history(List *list);
 
-int search_history_UI(List *list,char *str);
+void search_history_UI(List *list,char *str);
 
 #endif

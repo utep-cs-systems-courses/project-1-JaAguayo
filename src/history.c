@@ -82,28 +82,49 @@ void free_history(List *list){
   free(list);
 }
 
-int search_history_UI(List *list, char *str){
+void search_history_UI(List *list, char *str){
   char *search_node;
   int num_node = 0;
-  int search = 0;
+  int search = 1;
+  int print = 0;;
 
   int num_words = count_words(str);
 
-  printf("Do you want to search for a string? enter\n");
-  printf("yes = 1\n");
-  printf("no = 0\n");
+  while(search == 1){    
+    printf("\n");
+    printf("Do you want to search for a string?\n");
+    printf("\n");
+    printf("yes = 1\n");
+    printf("no = 0\n");
 
-  scanf("%d",&search);
-  if (search == 1){
-    printf("Enter the number of the string you want to find\n");
-    printf("!");
-    scanf("%d",&num_node);
-    if (num_node > 0 && num_node <= num_node){
-      search_node = get_history(list,num_node);
-      printf("%s\n",search_node);
+    scanf("%d",&search);
+    printf("\n");
+
+    while((search != 0) || (search != 1)){
+      printf("Please enter either 1 for yes or 0 for no\n");
+      scanf("%d",&search);
+      printf("\n");
+      if (search == 1 || search == 0)
+	break;
     }
-    else
-      printf("That string does not exist\n");
+    
+    if (search == 1){
+      printf("Enter the number of the string you want to find\n");
+      printf("!");
+      scanf("%d",&num_node);
+      if (num_node > 0 && num_node <= num_words){
+	search_node = get_history(list,num_node);
+	printf("string in history: ");
+	printf("%s\n",search_node);
+      }
+      else
+	printf("That string does not exist\n");
+    }
   }
-  
+  printf("Would you like to print the history?\n");
+  printf("1 for yes, 0 for no\n");
+  scanf("%d",&print);
+  if (print == 1)
+    printf("\n");
+    print_history(list);
 }
