@@ -11,13 +11,22 @@ int main(){
   printf("$ ");
   fgets(user_input,INPUT_LIM,stdin);
   char *str = user_input;
+  char *temp = str;
 
   char **token = tokenize(str);
   print_tokens(token);
   free_tokens(token);
+  printf("\n");
 
   List *strings;
   strings = init_history();
-  add_history(strings,str);
+  int num_words = count_words(str);
+
+  for (int i = 0; i <num_words;i++){
+    add_history(strings,temp);
+    temp = word_terminator(temp);
+    temp = word_start(temp);
+  }
+  
   print_history(strings);
 }
