@@ -31,6 +31,7 @@ void print_history(List *list);
 /*Free the history list and the strings it references. */
 void free_history(List *list);
 
+/*UI for asking user if they want to print history or find a node*/
 void search_history_UI(List *list,char *str);
 
 #endif
