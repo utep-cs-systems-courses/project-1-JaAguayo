@@ -1,12 +1,9 @@
 Project 1: Tokenizer
 ====================
-# Instructions:
+This directory contains source code for the program "tokenizer."
+Tokenizer takes a user inputed string and creates tokens of each word as well
+as stores each string in history for the user to access whichever individual
+string based on id or access all of the history that the user has inputted.
 
-You should document your tokenizer in this file.
-
-This file is written in the refreshingly simple `markdown` text
-formatting language.
-
-To learn about text formatting using markdown, we encourage you to examine 
- - [../README.md](../README.md)
- - the online [Markdown Guide](https://www.markdownguide.org/).
+You can run the progrm by using the command "make" then using "./tokenizer"
+and then the user will be prompted to enter a string.
