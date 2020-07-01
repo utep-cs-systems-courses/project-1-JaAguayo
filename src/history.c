@@ -75,19 +75,76 @@ void free_history(List *list){
 
   while (current != NULL){
     next = current->next; //next set to the node after current so its not lost
+    free(current->str);
     free(current); 
     current = next; //makes current set to node after current
   }
   free(list); //frees the list once all the nodes are free
 }
 
-void search_history_UI(List *list, char *str){
-  char *search_node;
-  int num_node = 0;
-  int search = 1;
-  int print = 0;;
+int get_input(){
+  int user_input = 0;
+  int count = 0;
 
-  int num_words = count_words(str);
+  while (user_input != 1 && user_input != 2 && user_input != 3){
+    if (count > 0){
+      printf("Please Enter 1-3\n");
+      printf("\n");
+    }
+    printf("User Input History\n");
+    printf("-------------------\n");
+    printf("Enter number of the option you want to chose\n");
+    printf("1. Search for an Input\n");
+    printf("2. Print User History\n");
+    printf("3. Quit Program\n");
+
+    scanf("%d",&user_input);
+    printf("\n");
+    ++count;
+  }
+  
+  return user_input;
+}
+
+/*
+method to read a string input "!3" for example
+- check if the first index is a "!" and if not loop it back
+ */
+
+void history_UI(List *list){
+  char *search_node;
+  int user_input = 0;
+  int search = 0;
+  int print = 0;
+  int quit = 0;
+
+  user_input = get_input();
+  printf("\n");
+
+  if (user_input == 3)
+    quit = 1;
+  
+  while (quit == 0){
+    if (user_input == 1){
+      
+    }
+    else{
+      print_history(list);
+      printf("\n");
+    }
+    
+    user_input = get_input();
+    printf("\n");
+
+    if (user_input == 3)
+      quit = 1;
+  }
+}
+/*
+void search_history_UI(List *list){
+  char *search_node;
+  int search = 1;
+  int print = 0;
 
   while(search == 1){    
     printf("\n");
@@ -106,9 +163,10 @@ void search_history_UI(List *list, char *str){
       scanf("%d",&search);
       printf("\n");
     }
-    
+
     if (search == 1){
       printf("Enter the number of the string you want to find\n");
+      fgets(search_input
       printf("!");
       scanf("%d",&num_node);
       if (num_node > 0 && num_node <= num_words){ //if the number entered is within the amount of
@@ -116,7 +174,7 @@ void search_history_UI(List *list, char *str){
 	printf("string in history: ");
 	printf("%s\n",search_node);
       }
-      else
+      2else
 	printf("That string does not exist\n");
     }
   }
@@ -137,3 +195,5 @@ void search_history_UI(List *list, char *str){
     print_history(list); //prints history
   }
 }
+*/
+

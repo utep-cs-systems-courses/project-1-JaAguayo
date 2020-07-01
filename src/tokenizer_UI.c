@@ -3,7 +3,7 @@
 #include "tokenizer.h"
 #include "history.h"
 
-#define INPUT_LIM 100  //limit on how many characters a user can input
+#define INPUT_LIM 50  //limit on how many characters a user can input
 
 int main(){
 
@@ -30,6 +30,6 @@ int main(){
     temp = word_start(temp); //time it loops and sends it to add_history
   }
   
-  search_history_UI(strings,str); //UI for printing and finding strings in history list
+  history_UI(strings); //UI for printing and finding strings in history list
   free_history(strings);
 }
