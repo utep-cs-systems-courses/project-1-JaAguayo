@@ -33,7 +33,9 @@ void free_history(List *list);
 
 int get_input();
 
+char *search_history(List *list,char *str);
+
 /*UI for asking user if they want to print history or find a node*/
-void history_UI(List *list);
+void history_UI(List *list,char *str);
 
 #endif

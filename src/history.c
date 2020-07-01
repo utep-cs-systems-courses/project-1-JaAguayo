@@ -3,6 +3,8 @@
 #include "tokenizer.h"
 #include "history.h"
 
+#define SEARCH_LIM 10
+
 List* init_history(){
   List *newList;
   newList = (List*) malloc (sizeof(List)); //space allocation for list
@@ -106,12 +108,37 @@ int get_input(){
   return user_input;
 }
 
-/*
-method to read a string input "!3" for example
-- check if the first index is a "!" and if not loop it back
- */
+char *search_history(List *list,char *str){
+  char input[SEARCH_LIM];
+  int is_exclamation = 0;
+  int int_conv = 0;
+  int i = 0;
+  int num_words = count_words(str);
+  char *found_str;
 
-void history_UI(List *list){
+  while (is_exclamation == 0){
+    printf("Enter the command '!(number of string you would like to find)'\n");
+    fgets(input,SEARCH_LIM,stdin);
+    printf("\n");
+
+    if (input[0] == '!')
+      is_exclamation = 1;
+  }
+
+  for (i = 1; input[i] >= '0'&& input[i] <= '9';i++)
+    int_conv = 10 * int_conv + (input[i] - '0');
+
+  if (int_conv > 0 && int_conv <= num_words)
+    found_str = get_history(list,int_conv);
+  else{
+    printf("That string is not in history\n");
+    printf("\n");
+    found_str = NULL;
+  }
+  return found_str;
+}
+
+void history_UI(List *list,char *str){
   char *search_node;
   int user_input = 0;
   int search = 0;
@@ -126,7 +153,16 @@ void history_UI(List *list){
   
   while (quit == 0){
     if (user_input == 1){
-      
+      search_node = search_history(list,str);
+      if (search_node == NULL)
+	;
+      else{
+	printf("The string found in history\n");
+	printf("--->");
+	printf("%s",search_node);
+	printf("<---\n");
+	printf("\n");
+      }
     }
     else{
       print_history(list);
@@ -140,60 +176,3 @@ void history_UI(List *list){
       quit = 1;
   }
 }
-/*
-void search_history_UI(List *list){
-  char *search_node;
-  int search = 1;
-  int print = 0;
-
-  while(search == 1){    
-    printf("\n");
-    printf("Do you want to search for a string?\n");
-    printf("\n");
-    printf("yes = 1\n");
-    printf("no = 0\n");
-    
-    printf("$");
-    scanf("%d",&search); //user input to check if user wants to look for a string
-    printf("\n");
-
-    while (search != 1 && search != 0){  //check to make sure input is a 0 or 1
-      printf("Please enter either 1 for yes or 0 for no\n");
-      printf("$");
-      scanf("%d",&search);
-      printf("\n");
-    }
-
-    if (search == 1){
-      printf("Enter the number of the string you want to find\n");
-      fgets(search_input
-      printf("!");
-      scanf("%d",&num_node);
-      if (num_node > 0 && num_node <= num_words){ //if the number entered is within the amount of
-	search_node = get_history(list,num_node); //words even entered then it will find the string
-	printf("string in history: ");
-	printf("%s\n",search_node);
-      }
-      2else
-	printf("That string does not exist\n");
-    }
-  }
-  printf("Would you like to print the history?\n");
-  printf("1 for yes, 0 for no\n");
-  printf("$");
-  scanf("%d",&print); //allows user to print the history if they want
-
-  while (print != 1 && print != 0){ //check if either 0 or 1 is inputed
-    printf("Please enter either 1 for yes or 0 for no\n");
-    printf("$");
-    scanf("d",&print);
-    printf("\n");
-  }
-  
-  if (print == 1){
-    printf("\n");
-    print_history(list); //prints history
-  }
-}
-*/
-

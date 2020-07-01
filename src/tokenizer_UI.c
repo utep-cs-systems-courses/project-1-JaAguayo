@@ -30,6 +30,6 @@ int main(){
     temp = word_start(temp); //time it loops and sends it to add_history
   }
   
-  history_UI(strings); //UI for printing and finding strings in history list
+  history_UI(strings,str); //UI for printing and finding strings in history list
   free_history(strings);
 }
