@@ -31,8 +31,10 @@ void print_history(List *list);
 /*Free the history list and the strings it references. */
 void free_history(List *list);
 
+/*Gets Input for whether user wants to search history,print history, or quit*/
 int get_input();
 
+/*Search for a string in history using command !#*/
 char *search_history(List *list,char *str);
 
 /*UI for asking user if they want to print history or find a node*/

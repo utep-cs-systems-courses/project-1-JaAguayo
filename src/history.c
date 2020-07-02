@@ -121,19 +121,19 @@ char *search_history(List *list,char *str){
     fgets(input,SEARCH_LIM,stdin);
     printf("\n");
 
-    if (input[0] == '!')
+    if (input[0] == '!')  //checks if it starts with !
       is_exclamation = 1;
   }
 
-  for (i = 1; input[i] >= '0'&& input[i] <= '9';i++)
+  for (i = 1; input[i] >= '0'&& input[i] <= '9';i++) //converts string to int
     int_conv = 10 * int_conv + (input[i] - '0');
 
-  if (int_conv > 0 && int_conv <= num_words)
+  if (int_conv > 0 && int_conv <= num_words) //if the number fits num_words then it is valid
     found_str = get_history(list,int_conv);
   else{
     printf("That string is not in history\n");
     printf("\n");
-    found_str = NULL;
+    found_str = NULL; //returns null pointer if the string doesnt exist
   }
   return found_str;
 }
@@ -153,7 +153,7 @@ void history_UI(List *list,char *str){
   
   while (quit == 0){
     if (user_input == 1){
-      search_node = search_history(list,str);
+      search_node = search_history(list,str); //search node
       if (search_node == NULL)
 	;
       else{
@@ -165,14 +165,14 @@ void history_UI(List *list,char *str){
       }
     }
     else{
-      print_history(list);
+      print_history(list); //print history
       printf("\n");
     }
     
     user_input = get_input();
     printf("\n");
 
-    if (user_input == 3)
-      quit = 1;
+    if (user_input == 3)  //quit
+      quit = 1; 
   }
 }
